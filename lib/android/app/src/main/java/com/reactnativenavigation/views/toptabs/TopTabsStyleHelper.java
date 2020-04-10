@@ -38,6 +38,7 @@ class TopTabsStyleHelper {
         }
 
         topTabs.setTabTextColors(tabTextColor, selectedTabColor);
+        topTabs.setSelectedTabIndicatorColor(selectedTabColor);
     }
 
     void setFontFamily(int tabIndex, Typeface fontFamily) {

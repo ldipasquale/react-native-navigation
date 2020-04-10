@@ -109,6 +109,13 @@ public class TitleBar extends Toolbar {
         if (titleTextView != null) titleTextView.setTypeface(typeface);
     }
 
+    public void setTitleFontBold(Bool isBold) {
+        if (isBold.isTrue()) {
+            TextView titleTextView = findTitleTextView();
+            if (titleTextView != null) titleTextView.setTypeface(titleTextView.getTypeface(), Typeface.BOLD);
+        }
+    }
+
     public void setTitleAlignment(Alignment alignment) {
         titleAlignment = alignment;
     }

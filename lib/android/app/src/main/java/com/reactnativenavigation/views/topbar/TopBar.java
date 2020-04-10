@@ -109,12 +109,16 @@ public class TopBar extends AppBarLayout implements ScrollEventListener.ScrollAw
         return titleBar;
     }
 
-    public void setHeight(int height) {
-        int pixelHeight = UiUtils.dpToPx(getContext(), height);
-        if (pixelHeight == getLayoutParams().height) return;
+    public void setHeight() {
+        int pixelHeight = ViewUtils.getHeight(titleBar);
+        if (topTabs.isVisible() == VISIBLE) pixelHeight += ViewUtils.getHeight(topTabs);
         ViewGroup.LayoutParams lp = getLayoutParams();
         lp.height = pixelHeight;
         setLayoutParams(lp);
+    }
+
+    public int getTotalHeight() {
+        return ViewUtils.getHeight(titleBar) + ViewUtils.getHeight(topTabs);
     }
 
     public void setTitleHeight(int height) {
@@ -143,6 +147,10 @@ public class TopBar extends AppBarLayout implements ScrollEventListener.ScrollAw
 
     public void setSubtitleFontFamily(Typeface fontFamily) {
         titleBar.setSubtitleTypeface(fontFamily);
+    }
+
+    public void setTitleFontBold(Bool isBold) {
+        titleBar.setTitleFontBold(isBold);
     }
 
     public void setSubtitleFontSize(double size) {
@@ -200,7 +208,7 @@ public class TopBar extends AppBarLayout implements ScrollEventListener.ScrollAw
     }
 
     public void setTopTabsHeight(int height) {
-        if (topTabs.getLayoutParams().height == height) return;
+        if (topTabs.getLayoutParams().height == UiUtils.dpToPx(getContext(), height)) return;
         topTabs.getLayoutParams().height = height > 0 ? UiUtils.dpToPx(getContext(), height) : height;
         topTabs.setLayoutParams(topTabs.getLayoutParams());
     }

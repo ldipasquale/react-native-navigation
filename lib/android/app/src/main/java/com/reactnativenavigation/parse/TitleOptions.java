@@ -3,14 +3,17 @@ package com.reactnativenavigation.parse;
 import android.graphics.Typeface;
 import androidx.annotation.Nullable;
 
+import com.reactnativenavigation.parse.params.Bool;
 import com.reactnativenavigation.parse.params.Colour;
 import com.reactnativenavigation.parse.params.Fraction;
 import com.reactnativenavigation.parse.params.NullColor;
+import com.reactnativenavigation.parse.params.NullBool;
 import com.reactnativenavigation.parse.params.NullFraction;
 import com.reactnativenavigation.parse.params.NullNumber;
 import com.reactnativenavigation.parse.params.NullText;
 import com.reactnativenavigation.parse.params.Number;
 import com.reactnativenavigation.parse.params.Text;
+import com.reactnativenavigation.parse.parsers.BoolParser;
 import com.reactnativenavigation.parse.parsers.ColorParser;
 import com.reactnativenavigation.parse.parsers.FractionParser;
 import com.reactnativenavigation.parse.parsers.NumberParser;
@@ -30,6 +33,7 @@ public class TitleOptions {
         options.color = ColorParser.parse(json, "color");
         options.fontSize = FractionParser.parse(json, "fontSize");
         options.fontFamily = typefaceManager.getTypeFace(json.optString("fontFamily", ""));
+        options.isFontBold = BoolParser.parse(json,"isFontBold");
         options.alignment = Alignment.fromString(TextParser.parse(json, "alignment").get(""));
         options.height = NumberParser.parse(json, "height");
         options.topMargin = NumberParser.parse(json, "topMargin");
@@ -42,6 +46,7 @@ public class TitleOptions {
     public Fraction fontSize = new NullFraction();
     public Alignment alignment = Alignment.Default;
     @Nullable public Typeface fontFamily;
+    public Bool isFontBold = new NullBool();
     public Component component = new Component();
     public Number height = new NullNumber();
     public Number topMargin = new NullNumber();
@@ -51,6 +56,7 @@ public class TitleOptions {
         if (other.color.hasValue()) color = other.color;
         if (other.fontSize.hasValue()) fontSize = other.fontSize;
         if (other.fontFamily != null) fontFamily = other.fontFamily;
+        if (other.isFontBold.hasValue()) isFontBold = other.isFontBold;
         if (other.alignment != Alignment.Default) alignment = other.alignment;
         if (other.component.hasValue()) component = other.component;
         if (other.height.hasValue()) height = other.height;
@@ -62,6 +68,7 @@ public class TitleOptions {
         if (!color.hasValue()) color = defaultOptions.color;
         if (!fontSize.hasValue()) fontSize = defaultOptions.fontSize;
         if (fontFamily == null) fontFamily = defaultOptions.fontFamily;
+        if (!isFontBold.hasValue()) isFontBold = defaultOptions.isFontBold;
         if (alignment == Alignment.Default) alignment = defaultOptions.alignment;
         component.mergeWithDefault(defaultOptions.component);
         if (!height.hasValue()) height = defaultOptions.height;

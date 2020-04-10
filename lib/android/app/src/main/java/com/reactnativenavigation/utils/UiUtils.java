@@ -87,6 +87,15 @@ public class UiUtils {
         return (int) UiUtils.pxToDp(context, getTopBarHeight(context));
     }
 
+    /**
+     * Provides the height depending on the usage of icons in the TopTabs
+     * https://material.io/components/tabs/#specs
+     * @return
+     */
+    public static int inferTopTabsHeightFromTabs () {
+        return 48;
+    }
+
     public static int getTopBarHeight(Context context) {
         if (topBarHeight > 0) {
             return topBarHeight;
