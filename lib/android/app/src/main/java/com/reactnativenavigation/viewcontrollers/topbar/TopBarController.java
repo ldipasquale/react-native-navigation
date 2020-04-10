@@ -36,8 +36,8 @@ public class TopBarController {
         return topBar;
     }
 
-    public int getHeight() {
-        return perform(topBar, 0, View::getHeight);
+    public int getTotalHeight() {
+        return topBar.getTotalHeight();
     }
 
     public int getRightButtonsCount() {
